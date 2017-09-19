@@ -15,10 +15,12 @@ class CreatePopsTable extends Migration
     {
         Schema::create('pops', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('image');
-            $table->integer('book_id');
-            $table->integer('user_id');
+            $table->string('image')->nullable();
+            $table->integer('book_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('book_id')->references('id')->on('books');
         });
     }
 

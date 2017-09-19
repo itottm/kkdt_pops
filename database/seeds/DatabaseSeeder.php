@@ -1,6 +1,10 @@
 <?php
 
+use App\User;
+use App\Book;
+use App\Pop;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        User::truncate();
+        Book::truncate();
+        Pop::truncate();
+
+        $usersQuantity = 1000;
+        $booksQuantity = 100;
+        $popsQuantity = 100;
+
+        factory(User::class, $usersQuantity)->create();
+        factory(Book::class, $booksQuantity)->create();
+        factory(Pop::class, $popsQuantity)->create();
     }
 }

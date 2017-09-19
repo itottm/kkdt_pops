@@ -14,11 +14,16 @@ use Illuminate\Http\Request;
 */
 
 /*
+* User
+*/
+Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
+
+/*
 * Book
 */
-Route::resource('book', 'Book\BookController');
+Route::resource('books', 'Book\BookController');
 
 /*
 * Pop
 */
-Route::resource('pop', 'Pop\PopController');
+Route::resource('pops', 'Pop\PopController');

@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Pop;
 
+use App\Pop;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 
-class PopController extends Controller
+class PopController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,8 @@ class PopController extends Controller
      */
     public function index()
     {
-        //
+        $pops = Pop::all();
+        return $this->showAll($pops);
     }
 
     /**
@@ -44,9 +46,9 @@ class PopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pop $pop)
     {
-        //
+        return $this->showOne($pop);
     }
 
     /**
@@ -55,7 +57,7 @@ class PopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Pop $pop)
     {
         //
     }
@@ -67,7 +69,7 @@ class PopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pop $pop)
     {
         //
     }
@@ -78,7 +80,7 @@ class PopController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pop $pop)
     {
         //
     }
