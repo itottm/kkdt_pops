@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Pop;
 
 use App\Pop;
+use App\Book;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
+use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class PopController extends ApiController
 {
@@ -35,9 +38,19 @@ class PopController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Book $book)
     {
-        //
+        $rules = [
+            'image' => 'required|image',
+            'book_id' => 'required',
+            'user_id' => 'required'
+        ];
+        $this->validate($request, $rules);
+        $data = $request->all();
+        $data['image'] = $request->image->store('');
+//        $data['book_id'] = $book->id;
+        $pop = Pop::create($data);
+        return $this->showOne($pop, 201);
     }
 
     /**

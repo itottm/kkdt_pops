@@ -2,14 +2,32 @@
 
 namespace App;
 
+use App\Pop;
+use App\Scopes\BookScope;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
     protected $fillable = [
-        'image',
-        'book_id',
-        'user_id'
+        'title',
+        'author',
+        'isbn'
     ];
+
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::addGlobalScope(new BookScope);
+//    }
+
+    public function pops()
+    {
+        return $this->hasMany(Pop::class);
+    }
 }

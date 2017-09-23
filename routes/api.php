@@ -22,6 +22,7 @@ Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]
 * Book
 */
 Route::resource('books', 'Book\BookController');
+Route::resource('books.pops', 'Book\BookPopController', ['only' => ['index']]);
 
 /*
 * Pop

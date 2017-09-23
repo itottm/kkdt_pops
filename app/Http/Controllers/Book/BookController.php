@@ -37,7 +37,15 @@ class BookController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'title' => 'required',
+            'author' => 'required',
+            'isbn' => 'required'
+        ];
+        $this->validate($request, $rules);
+        $data = $request->all();
+        $book = Book::create($data);
+        return $this->showOne($book, 201);
     }
 
     /**
