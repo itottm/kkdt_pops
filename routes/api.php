@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-/*
-* User
-*/
-Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
 
 /*
 * Book
@@ -28,3 +24,11 @@ Route::resource('books.pops', 'Book\BookPopController', ['only' => ['index']]);
 * Pop
 */
 Route::resource('pops', 'Pop\PopController');
+
+/*
+* User
+*/
+Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
+Route::name('verify')->get('users/verify/{token}', 'User\UserController@verify');
+Route::name('resend')->get('users/{user}/resend', 'User\UserController@resend');
+

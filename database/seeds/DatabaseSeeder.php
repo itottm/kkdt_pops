@@ -21,6 +21,10 @@ class DatabaseSeeder extends Seeder
         Book::truncate();
         Pop::truncate();
 
+        User::flushEventListeners();
+        Book::flushEventListeners();
+        Pop::flushEventListeners();
+
         $usersQuantity = 1000;
         $booksQuantity = 100;
         $popsQuantity = 100;
