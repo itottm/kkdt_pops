@@ -1,8 +1,10 @@
 <?php
 
-use App\User;
 use App\Book;
 use App\Pop;
+use App\HeadOffice;
+use App\Store;
+use App\User;
 //use Faker\Generator as Faker;
 
 /*
@@ -16,19 +18,6 @@ use App\Pop;
 |
 */
 
-$factory->define(User::class, function (Faker\Generator $faker) {
-    static $password;
-
-    return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
-        'verified' => $verified = $faker->randomElement([User::VERIFIED_USER, User::UNVERIFIED_USER]),
-        'verification_token' => $verified == User::VERIFIED_USER ? null : User::generateVerificationCode(),
-        'admin' => $verified = $faker->randomElement([User::ADMIN_USER, User::REGULAR_USER]),
-    ];
-});
 
 $factory->define(Book::class, function (Faker\Generator $faker) {
     return [
@@ -46,3 +35,30 @@ $factory->define(Pop::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(HeadOffice::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word
+    ];
+});
+
+$factory->define(Store::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'head_office_id' => $faker->numberBetween(1, 10)
+    ];
+});
+
+
+$factory->define(User::class, function (Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('secret'),
+        'remember_token' => str_random(10),
+        'verified' => $verified = $faker->randomElement([User::VERIFIED_USER, User::UNVERIFIED_USER]),
+        'verification_token' => $verified == User::VERIFIED_USER ? null : User::generateVerificationCode(),
+        'admin' => $verified = $faker->randomElement([User::ADMIN_USER, User::REGULAR_USER]),
+    ];
+});

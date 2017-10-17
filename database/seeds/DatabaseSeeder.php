@@ -1,8 +1,10 @@
 <?php
 
-use App\User;
 use App\Book;
 use App\Pop;
+use App\HeadOffice;
+use App\Store;
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,20 +19,28 @@ class DatabaseSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
-        User::truncate();
         Book::truncate();
         Pop::truncate();
+        HeadOffice::truncate();
+        Store::truncate();
+        User::truncate();
 
-        User::flushEventListeners();
         Book::flushEventListeners();
         Pop::flushEventListeners();
+        HeadOffice::flushEventListeners();
+        Store::flushEventListeners();
+        User::flushEventListeners();
 
-        $usersQuantity = 1000;
         $booksQuantity = 100;
         $popsQuantity = 100;
+        $headOfficesQuantity = 10;
+        $storesQuantity = 50;
+        $usersQuantity = 1000;
 
-        factory(User::class, $usersQuantity)->create();
         factory(Book::class, $booksQuantity)->create();
         factory(Pop::class, $popsQuantity)->create();
+        factory(HeadOffice::class, $headOfficesQuantity)->create();
+        factory(Store::class, $storesQuantity)->create();
+        factory(User::class, $usersQuantity)->create();
     }
 }

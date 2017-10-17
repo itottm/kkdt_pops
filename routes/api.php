@@ -26,6 +26,17 @@ Route::resource('books.pops', 'Book\BookPopController', ['only' => ['index']]);
 Route::resource('pops', 'Pop\PopController');
 
 /*
+* HeadOffice
+*/
+Route::resource('headOffices', 'HeadOffice\HeadOfficeController');
+Route::resource('headOffices.stores', 'HeadOffice\HeadOfficeStoreController', ['only' => ['index']]);
+
+/*
+* Store
+*/
+Route::resource('stores', 'Store\StoreController');
+
+/*
 * User
 */
 Route::resource('users', 'User\UserController', ['except' => ['create', 'edit']]);
