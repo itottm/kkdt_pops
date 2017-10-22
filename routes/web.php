@@ -26,6 +26,10 @@ Route::get('/home/my-tokens', 'HomeController@getTokens')->name('personal-tokens
 Route::get('/home', 'HomeController@index');
 
 
+Route::get('/dashbord', 'Dashbord\DashbordController@index');
+Route::get('/dashbord/upload', 'Dashbord\DashbordController@upload');
+
+
 Route::get('/', function() {
     return view('welcome');
 })->middleware('guest');
