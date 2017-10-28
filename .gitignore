@@ -11,8 +11,12 @@ npm-debug.log
 yarn-error.log
 .env
 
-#下記は仮のignore
+/resources/certs/
+
+#仮のignore
 /public/fonts
 /public/lib
 /public/js/upload.js
 /resources/views/dashbord/
+/resources/views/test/
+/app/Http/Controllers/Test/
