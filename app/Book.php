@@ -5,6 +5,7 @@ namespace App;
 use App\Pop;
 use App\Scopes\BookScope;
 use App\Http\Controllers\Controller;
+use App\Transformers\BookTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\User;
 use Illuminate\Database\Eloquent\Model;
@@ -18,6 +19,8 @@ class Book extends Model
         'author',
         'isbn'
     ];
+
+    public $transformer = BookTransformer::class;
 
 //    protected static function boot()
 //    {

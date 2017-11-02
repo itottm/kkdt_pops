@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Exception;
+use GuzzleHttp\Exception\ClientException;
 use App\Traits\ApiResponser;
 use Illuminate\Database\QueryException;
 use Illuminate\Auth\AuthenticationException;
@@ -89,6 +90,15 @@ class Handler extends ExceptionHandler
         if ($exception instanceof TokenMismatchException) {
             return redirect()->back()->withInput($request->input());
         }
+        if ($exception instanceof ClientException) {
+            $content = json_decode($exception->getResponse()->getBody()->getContents());
+            $message = $content->message;
+            return redirect()->back()->withErrors($message)->withInput($request->all());
+        }
+        if ($exception instanceof EmptyDataException) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
+
         if (config('app.debug')) {
             return parent::render($request, $exception);
         }

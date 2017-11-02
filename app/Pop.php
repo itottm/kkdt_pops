@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Book;
+use App\Transformers\PopTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\User;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,8 @@ class Pop extends Model
         'book_id',
         'user_id'
     ];
+
+    public $transformer = PopTransformer::class;
 
     public function book()
     {
